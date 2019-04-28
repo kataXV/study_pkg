@@ -105,7 +105,7 @@ catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES study_pkg
 #  CATKIN_DEPENDS roscpp rospy
-#  DEPENDS system_lib
+#  DEPENDS opencv
 )
 
 ###########
@@ -197,3 +197,15 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
+
+set(TALKER_NODE_NAME opencv_image_publisher)
+set(TALKER_NODE_SRC src/stereo_match.cpp)
+
+add_executable(${TALKER_NODE_NAME} ${TALKER_NODE_SRC})
+
+add_dependencies(${TALKER_NODE_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+target_link_libraries(${TALKER_NODE_NAME} ${catkin_LIBRARIES})
+target_link_libraries(${TALKER_NODE_NAME} ${OpenCV_LIBRARIES})

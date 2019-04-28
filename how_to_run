@@ -1,0 +1,2 @@
+#!/bin/bash
+rosrun study_pkg opencv_image_publisher a a --algorithm=sgbm --max-disparity=64 --scale=0.5 --blocksize=5 -i=/home/kata/catkin_ws/devel/lib/study_pkg/intrinsics.yml -e=/home/kata/catkin_ws/devel/lib/study_pkg/extrinsics.yml -o=disp.jpg -p=point_cloud.txt
